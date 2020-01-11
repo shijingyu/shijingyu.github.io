@@ -2,13 +2,13 @@
 <html lang="chinese (simplified)">
 
 <head>
-        <meta charset="utf-8">
+            <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>吾之存在，超越万物 - Authors</title>
+        <title>吾之存在，超越万物</title>
 
 
         <!-- Bootstrap Core CSS -->
@@ -32,8 +32,22 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-		<meta property="og:locale" content="chinese (simplified)">
+
+
+
+        <meta name="tags" contents="折腾" />
+
+
+			<meta property="og:locale" content="chinese (simplified)">
 		<meta property="og:site_name" content="吾之存在，超越万物">
+
+	<meta property="og:type" content="article">
+	<meta property="article:author" content="">
+	<meta property="og:url" content="/blog/qunhui_1.html">
+	<meta property="og:title" content="群晖折腾记①-前期探索">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="/">
+	<meta property="article:published_time" content="2020-01-11 00:00:00+08:00">
 </head>
 
 <body>
@@ -64,12 +78,17 @@
     </nav>
 
     <!-- Page Header -->
-        <header class="intro-header" style="background-image: url('/theme/images/home-bg.jpg')">
+        <header class="intro-header" style="background-image: url('/theme/images/post-bg.jpg')">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-heading">
-                        <h1>Articles by </h1>
+                        <h1>群晖折腾记①-前期探索</h1>
+                        <span class="meta">Posted by
+                                <a href="/author/shi-tou-boy.html">石头boy</a>
+                             on 周六 11 一月 2020
+                        </span>
+                        
                     </div>
                 </div>
             </div>
@@ -80,14 +99,100 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-        <div class="post-preview">
-            <a href="/author/shi-tou-boy.html" rel="bookmark">
-                <h2 class="post-title">
-                    石头boy (2)
-                </h2>
-            </a>
-        </div>
-        <hr>
+    <!-- Post Content -->
+    <article>
+        <p>最近发现办公室的电表倒着转，果断搞了一台实体服务器来测试到底是不是倒着转。</p>
+<h3>入手</h3>
+<p>400淘宝入手蜗牛星际。B版单千兆。自带群晖系统。</p>
+<p>买来发现噪音和温度都很良好，啥都没换。直接搞起了。</p>
+<h3>开机配置</h3>
+<ol>
+<li>
+<p>直接插上网线，hdmi,硬盘，开机是一个黑屏。我以为是卖家没装好系统，去问卖家。卖家说已经装好了，可以直接内网登陆了。</p>
+</li>
+<li>
+<p>内网5000端口是群晖的登陆界面，输入默认账号密码登陆即可。</p>
+</li>
+<li>
+<p>新世界的大门，就像你打开了一扇门。</p>
+</li>
+<li>
+<p>硬盘需要在菜单-存储空间管理员，格式化后挂载才能识别出来。</p>
+</li>
+</ol>
+<h3>前期探索</h3>
+<ol>
+<li>默认是开启ssh的，可以用ssh登陆到群晖。 </li>
+</ol>
+<blockquote>
+<p>sudo root</p>
+</blockquote>
+<p>密码是群晖的登陆密码。</p>
+<ol>
+<li>
+<p>群晖系统是一个定制的Linux，没有yum和apt-get。</p>
+</li>
+<li>
+<p>套件中心可以安装软件，有docker，有第三方源。</p>
+</li>
+<li>
+<p>没有 crontab 定时任务，后台不能直接运行脚本，需要用群晖提供的定时计划程序，很好用。 要写绝对路径！</p>
+</li>
+</ol>
+<h3>迷茫</h3>
+<p>探索到现在，感觉目前就是一个本地的linux系统服务器。不知道怎么玩了。</p>
+<p>然后整理了一下思路，现在连外网都访问不到，算什么服务器。</p>
+<p>内网穿透搞起！</p>
+<h3>内网穿透</h3>
+<ol>
+<li>
+<p>看了花生壳软件，群晖套件上自带一个。发现打不开，查了一下花生壳，有流量限制。不舒服，pass。</p>
+</li>
+<li>
+<p>Google到一个开源软件，nps
+我理解的原理就是 代理，把数据通过第三方服务器传输给内网的群晖。</p>
+</li>
+</ol>
+<p>各个平台都有客户端和服务端。
+地址这里：
+https://github.com/ehang-io/nps</p>
+<p>在我腾讯云的Linux和Windows服务器都装了服务端，然后手机和群晖使用客户端。
+无奈不知道什么问题，始终连接不上，服务端显示客户端没在线。</p>
+<ol>
+<li>又迷茫了，再次想买一个花生棒来接入到内网省事。然后想到我是写字楼宽带，为什么不给电信要一个公网ip呢？</li>
+</ol>
+<h3>公网ip</h3>
+<ol>
+<li>
+<p>广东电信公众号下维修单，说我是写字楼宽带，公司需要公网ip。很快电信客服就给我打电话，给我了一个动态公网ip。让我重启光猫和路由。</p>
+</li>
+<li>
+<p>动态公网ip，就是ip会变。解决这个问题，我想到了DDNS。路由器我是斐讯K3，上面有DDNS服务，但是要接入第三方的，花生壳的，华硕的等等。群晖上面也有DDNS，也是接入第三方服务。</p>
+</li>
+<li>
+<p>Google到几个脚本，用云服务商的API，来定时去解析域名。这样实现DDNS。
+比如我把域名的DNS服务商用的是阿里云的，再找到接入阿里云开发用的apikey等信息，就可以实现用程序去解析域名了。</p>
+<blockquote>
+<p>定时5分钟去查我的ip，把域名解析到这个IP上。这样就是DDNS了。</p>
+</blockquote>
+</li>
+</ol>
+<p>用的这个：
+https://github.com/NewFuture/DDNS</p>
+<ol>
+<li>
+<p>有了公网IP，这个新世界的大门才是完全打开了。</p>
+</li>
+<li>
+<p>访问公网IP，是访问到你路由器的后台的。</p>
+</li>
+</ol>
+<hr>
+<p>新世界的大门打开了，下面就是开启折腾之路~</p>
+    </article>
+
+    <hr>
+
             </div>
         </div>
     </div>
