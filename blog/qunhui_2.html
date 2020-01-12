@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>吾之存在，超越万物</title>
+
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="/theme/css/code_blocks/darkly.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+
+        <meta name="tags" contents="折腾" />
+
+
+			<meta property="og:locale" content="chinese (simplified)">
+		<meta property="og:site_name" content="吾之存在，超越万物">
+
+	<meta property="og:type" content="article">
+	<meta property="article:author" content="">
+	<meta property="og:url" content="/blog/qunhui_2.html">
+	<meta property="og:title" content="群晖折腾记②-前期探索">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="/">
+	<meta property="article:published_time" content="2020-01-12 00:00:00+08:00">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">吾之存在，超越万物</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>群晖折腾记②-前期探索</h1>
+                        <span class="meta">Posted by
+                                <a href="/author/shi-tou-boy.html">石头boy</a>
+                             on 周日 12 一月 2020
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <h2>需求1 访问内网api （这是外网还没好）</h2>
+<p>群晖让我续上的第一个需求很奇葩。跟业务有关系。手机上hook了某软件，手机上XP框架hook程序监听10010端口，把参数传输进来，处理之后再返回去响应。</p>
+<h5>测试阶段：</h5>
+<ul>
+<li>我是用本地电脑 adb forward 把10010端口转发到手机上10010端口</li>
+<li>电脑架设服务端，监听8046端口，收到参数处理逻辑后访问本地10010端口</li>
+<li>软件客户端在我本地访问本地8046端口。</li>
+</ul>
+<h5>数据流：</h5>
+<blockquote>
+<p>客户软件客户端-》软件服务端接口-》我手机</p>
+</blockquote>
+<p>测试流程通了，怎么把手机和访问手机的这个服务端中转接口连接起来且外网可以访问呢？</p>
+<h4>自己想的几个方案：</h4>
+<ol>
+<li>群晖做这台服务端中转接口，相当于把测试阶段的本地电脑换成群晖，然后内网穿透。
+ 这个方案的问题： 群晖怎么装adb和手机驱动</li>
+</ol>
+<h4>问了群里的人，不需要adb和驱动，直接nginx内网端口转发。</h4>
+<p>群晖很强大的地方就是，可视化界面有很多端口转发，反向代理，DDNS，frp，这种路由 网络相关的功能。</p>
+<ol>
+<li>
+<p>用花生壳的花生棒接入路由，让手机这个端口直接暴露再公网ip上</p>
+</li>
+<li>
+<p>远端的良心云是否有办法可以把端口转发到内网上的手机。</p>
+<div class="highlight"><pre><span></span><span class="err">nps和frp服务端</span>
+</pre></div>
+
+
+</li>
+</ol>
+<h4>公网ip解决了之后：</h4>
+<p>群晖装Python flask环境，写好脚本。定时计划里面配置好运行一次。</p>
+<p>路由端口转发，外网10010转到手机ip的10010端口,外网8064转到群晖的8064端口。
+由此，数据流：</p>
+<blockquote>
+<p>客户软件客户端-》阿里云DDNS解析到服务器IP 8064端口-》路由器8064-》群晖8064-》路由器10010-》手机10010</p>
+</blockquote>
+<h4>截止目前，群晖NAS上挂了两个Python脚本。一个DDNS，一个这个业务接口。</h4>
+<p>定时计划还可以设置日志输出。</p>
+<h2>玩法2-各种服务</h2>
+<p>到现在我一直是当群晖为linux服务器玩的，还没探究群晖的真正用法。
+然后去查群晖到底有啥玩的。</p>
+<p>群晖套件里有很多安装即用，可视化界面配置的服务端。</p>
+<p>目前我搭建了：</p>
+<ol>
+<li>
+<p>Chat聊天室</p>
+</li>
+<li>
+<p>Download Station下载服务</p>
+</li>
+<li>
+<p>file Station 文件操作服务</p>
+</li>
+<li>
+<p>MailPlus 邮件服务</p>
+</li>
+<li>
+<p>Synology Drive 云盘同步</p>
+</li>
+<li>
+<p>Video Station 影音服务</p>
+</li>
+</ol>
+<p>这里凸显了群晖特别好用的一个方式。
+1. 安装套件，可视化服务端，不需要写配置文件。
+2. 上面每个服务，搭建好了之后，都有web网页可以访问的客户端。</p>
+<blockquote>
+<p>聊天室，都可以通过网页进去，就是网页聊天</p>
+<p>下载服务，打开网页，登陆后，就可以添加上链接，让他下载了</p>
+<p>文件服务，可以再网页上访问你的文件</p>
+<p>邮件服务，可以再网页上收发邮件</p>
+<p>云盘服务，可以再网页上看云盘，下载，分享下载链接，加密码。</p>
+<p>影音服务，打开就能看你存储的影音。</p>
+</blockquote>
+<p>群晖的权限控制也特别棒，因为是我自己用的，所以研究。不表述。</p>
+<ol>
+<li>控制面板里面有“应用程序门户”，这里可以设置上面的每个服务别名。</li>
+</ol>
+<blockquote>
+<p>就是访问路由URL可以自定。</p>
+<p>自定义端口</p>
+<p>自定义域名</p>
+</blockquote>
+<ol>
+<li>配合上公网ip+二级域名，也就是说不需要写一行代码和配置文件，再界面上点点，就可以拥有一个全套的私有服务。</li>
+</ol>
+<blockquote>
+<p>访问 mail.shitouboy.com可以收发邮件。</p>
+<p>访问 download.shitouboy.com可以远程下载。</p>
+<p>访问 file.shitouboy.com可以访问群晖上的文件。</p>
+<p>访问 yun.shitouboy.com可以访问我的云盘文件，自定义分享文件。把里面的文件分享链接域名都可以自定义。</p>
+<p>访问 video.shitouboy.com可以看电影。</p>
+</blockquote>
+    </article>
+
+    <hr>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Blog powered by <a href="https://blog.shitouboy.com/">石头Boy</a>,
+                </a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/theme/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/theme/js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/theme/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
