@@ -5,37 +5,51 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/</loc>
-<lastmod>2020-01-12T14:24:11-00:00</lastmod>
+<lastmod>2020-01-16T14:02:04-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/tags.html</loc>
-<lastmod>2020-01-12T14:24:11-00:00</lastmod>
+<lastmod>2020-01-16T14:02:04-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/categories.html</loc>
-<lastmod>2020-01-12T14:24:11-00:00</lastmod>
+<lastmod>2020-01-16T14:02:04-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/authors.html</loc>
-<lastmod>2020-01-12T14:24:11-00:00</lastmod>
+<lastmod>2020-01-16T14:02:04-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>/archives.html</loc>
-<lastmod>2020-01-12T14:24:11-00:00</lastmod>
+<lastmod>2020-01-16T14:02:04-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
+</url>
+
+<url>
+<loc>/blog/IOT_think.html</loc>
+<lastmod>2020-01-16T00:00:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+
+<url>
+<loc>/blog/IOT_card.html</loc>
+<lastmod>2020-01-12T00:00:00+08:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
 </url>
 
 <url>
@@ -68,7 +82,14 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/category/zhe-teng.html</loc>
-<lastmod>2020-01-12T00:00:00+08:06</lastmod>
+<lastmod>2020-01-16T00:00:00+08:06</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>/tag/iot.html</loc>
+<lastmod>2020-01-16T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -89,7 +110,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>/author/shi-tou-boy.html</loc>
-<lastmod>2020-01-12T00:00:00+08:06</lastmod>
+<lastmod>2020-01-16T00:00:00+08:06</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
